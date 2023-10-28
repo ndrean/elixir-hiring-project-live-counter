@@ -8,22 +8,7 @@ defmodule LiveviewCounterWeb.Router do
     plug :put_root_layout, html: {LiveviewCounterWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    # plug :put_user_token
   end
-
-  # defp put_user_token(conn, _) do
-  #   id = Enum.random(0..1000)
-  #   token = Phoenix.Token.sign(conn, "user socket", id)
-
-  #   require Logger
-
-  #   Logger.debug(
-  #     "Starting connection: user: #{id}, from region: #{System.get_env("FLY_REGION")}-----------"
-  #   )
-
-  #   :ets.insert(:users, {:id, id, :authorized})
-  #   assign(conn, :user_token, token)
-  # end
 
   pipeline :api do
     plug :accepts, ["json"]

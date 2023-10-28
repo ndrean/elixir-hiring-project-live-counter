@@ -108,12 +108,6 @@ defmodule LiveviewCounterWeb.Counter do
     {:noreply, assign(socket, counts: counts)}
   end
 
-  def handle_info(capture, socket) do
-    require Logger
-    Logger.debug(inspect(capture))
-    {:noreply, socket}
-  end
-
   def presence_by_region(presence, tracker_id) do
     presence
     |> Enum.map(&elem(&1, 1))
@@ -146,8 +140,6 @@ defmodule LiveviewCounterWeb.Counter do
   end
 
   def update_counts_on_leave(new_present, subtracts, counts) do
-    IO.puts("update on leave----------")
-
     key =
       case Map.keys(subtracts) |> length() do
         0 -> ""

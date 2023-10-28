@@ -1,19 +1,25 @@
-# Additions
+# Genral
 
-## DB
+Generated a new project since the "official" one used webpack.
+
+Project achieved in 7h.
+
+Usage:
 
 ```bash
-mix ecto.gen.repo -r Counter.Repo
-mix ecto.gen.migration create_counters
+PORT=4000 FLY_REGION=ord iex --sname "a" --cookie secret -S mix phx.server
+PORT=4001 FLY_REGION=cdg iex --sname "b" --cookie secret -S mix phx.server
+...
 ```
 
-```elixir
-config :liveview_counter,
-  ecto_repos: [Counter.Repo]
+## Additions - changes
 
-config :liveview_counter, Counter.Repo,
-  database: "liveview_counter_repo",
-  username: "user",
-  password: "pass",
-  hostname: "localhost"
-```
+`Libcluster` with "localEPDM" to cluster the nodes.
+
+An SQLITE DB for persistence with a unique table COUNTER, with two records: `region`, `count`.
+
+Every change of the GenServer state is saved in the database.
+
+On mount, the socket state is populated by reading the DB and broadcasted to update users view.
+
+On leave, the state is updated

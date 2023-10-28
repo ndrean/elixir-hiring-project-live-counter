@@ -5,15 +5,9 @@ defmodule LiveviewCounter.Application do
 
   @impl true
   def start(_type, _args) do
-    # start_users_ets()
-
     topologies = [
       epdm: [
         strategy: Cluster.Strategy.LocalEpmd
-        # config: [hosts: [:"a@127.0.0.1", :"b@127.0.0.1"]],
-        # connect: {:net_kernel, :connect_node, []},
-        # disconnect: {:erlang, :disconnect_node, []},
-        # list_nodes: {:erlang, :nodes, [:connected]}
       ]
     ]
 
@@ -36,8 +30,4 @@ defmodule LiveviewCounter.Application do
     LiveviewCounterWeb.Endpoint.config_change(changed, removed)
     :ok
   end
-
-  # def start_users_ets do
-  #   :users = :ets.new(:users, [:set, :public, :named_table])
-  # end
 end
